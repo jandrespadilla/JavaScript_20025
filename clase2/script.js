@@ -1,3 +1,4 @@
+/*
 // Pedimos el nombre 
 let nombre = prompt('Ingrese su nombre');
 // Saludamos y damos mensaje motivador
@@ -11,4 +12,4 @@ let suma = suma1 + suma2;
 // Mostramos resultados
 console.log("Tu suma dio " + suma);
 alert("Tu suma dio " + suma);
-}
+}*/

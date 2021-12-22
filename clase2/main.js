@@ -84,7 +84,7 @@ if (esValida) {
 let a = 5;
 let b = 10;
 let c = false;
-
+/*
 // A es igual B
 if (a == b) {
     console.log("A es igual a B!");
@@ -125,19 +125,19 @@ if (a == 10 || b == 10) {
 
 if (!(a >= 5)) {
     console.log("A no es mayor que 5!");
-}
+}*/
 
 
 
 
-/*let nombre = prompt("Cúal es tu Nombre?");
+let nombre = prompt("Cúal es tu Nombre?");
 let apellido = prompt("Cúal es tu Apellido?");
 
 if ((nombre == null) && (apellido == null)) {
     alert("Ingrese su Nombre y Apellido!");
 } else {
     alert("Su Nombre y Apellido es: " + nombre + " " + apellido);
-}*/
+}/**/
 
 
 
