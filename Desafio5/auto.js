@@ -1,12 +1,12 @@
 class Auto {
-    constructor (nombre,id_marca,ano,precio) {
+    constructor (nombre,ano,id_marca,precio) {
         this.nombre = nombre.toUpperCase();
         this.id_marca = id_marca;
         this.ano = ano;
         this.precio = precio;
         this.vendido = false;
     }
-    vendido (){
+    vender (){
         this.vendido=true;
     }
 }
