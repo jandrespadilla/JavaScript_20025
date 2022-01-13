@@ -1,0 +1,28 @@
+{
+  "marcas": [
+    {
+      "id": 1,
+      "nombre": "Audi"
+    },
+    {
+      "id": 2,
+      "nombre": "BMW"
+    },
+    {
+      "id": 3,
+      "nombre": "Chevrolet"
+    },
+    {
+      "id": 4,
+      "nombre": "Citroen"
+    },  
+    {
+      "id": 7,
+      "nombre": "Fiat"
+    },
+    {
+      "id": 8,
+      "nombre": "Ford"
+    }
+  ]
+}
