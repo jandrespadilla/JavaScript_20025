@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col text-white bg-black p-3">
-                    <img src="images/coderhouse.png" width="180">
+                   
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         <h2>Formulario de Contacto</h2>
                         <form id="form1">
                              <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
+                                <label for="nombre" class="form-label">Apellido y Nombre</label>
                                 <input type="text" class="form-control" id="nombre">
                                 <div id="nombreError" class="form-text"></div>
                             </div>
@@ -40,15 +40,21 @@
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Teléfono</label>
                                 <select class="form-control" id="telefono">
+                                    <option value="Sin Teléfono">Sin Teléfono</option>
                                     <option value="Teléfono">Teléfono de línea</option>
                                     <option value="Celular">Celular</option>
-                                    <option value="Sin Teléfono">Sin Teléfono</option>
                                 </select>
                                 <div id="telefonoError" class="form-text"></div>
                             </div>
+                            <div id='numeroTelefonoDiv' class="mb-3 visually-hidden">
+                                <label for="numeroTelefono" class="form-label">Numero de telefono</label>
+                                <input type="text" class="form-control" id="numeroTelefono">
+                                <div id="numeroTelefonoError" class="form-text"></div>
+                            </div>                           
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Provincia</label>
                                 <select class="form-control" id="provincia">
+                                    <option value=-1>Seleccione Provincia</option>
                                     <option value="Buenos Aires">Buenos Aires</option>
                                     <option value="Catamarca">Catamarca</option>
                                     <option value="La Rioja">La Rioja</option>
