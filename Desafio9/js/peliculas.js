@@ -38,15 +38,7 @@ function loadPeliculas(peliculas) {
     }
 }
 
-function armoActores(actores) {
-    resultadoStr=''
-   for (let index = 0; index < 5; index++) {
-       const act = actores[index];
-       resultadoStr=resultadoStr+act.name+'\n';
-      
-   }
-   return resultadoStr;
-}
+ 
 
 async function buscarPelis() {
 
@@ -79,7 +71,7 @@ async function buscarPelis() {
         actoresArmados.push(act.name);
        
     }
-     // actoresArmados=armoActores(actores.cast);
+     
       return actoresArmados;
   }
   
