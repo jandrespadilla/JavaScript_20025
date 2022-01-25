@@ -36,7 +36,7 @@ function loadSeries(grilla) {
 }
 
 
-async function buscarSeries(seriespar) {
+async function buscarSeries() {
 
     // Traigo series
     let response = await fetch("https://api.themoviedb.org/3/trending/tv/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
