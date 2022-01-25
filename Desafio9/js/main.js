@@ -1,10 +1,11 @@
 function loadPerson(grilla) {
     let div_grilla = document.getElementById("personas");
-    
+    let modal = document.getElementById("detallePersona");
+    let infoPersona = document.getElementById("infoPersona");   
     
     for (let persona of grilla) {
         if (persona.profile_path!=null) {
-            console.log(grilla);
+           // console.log(grilla);
             let columna = document.createElement("div");
             columna.className = "col-4 py-3";
             let encabezado = document.createElement("h2");
@@ -15,9 +16,15 @@ function loadPerson(grilla) {
             let poster = document.createElement("img");
             poster.className = "card-img-top";
             poster.src = "https://image.tmdb.org/t/p/w500/" + persona.profile_path;
-            poster.onclick = () => {
-                alert(persona.name);
-            }
+ 
+           
+ 
+            poster.onclick = function(){
+
+                modal.style.display = "show";
+                 
+                infoPersona.innerHTML = persona.name;
+              } 
             let card_body = document.createElement("div");
             card_body.className = "card-body";
             let parrafo = document.createElement("p");
