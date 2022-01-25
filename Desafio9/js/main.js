@@ -1,32 +1,35 @@
 function loadPerson(grilla) {
-    let div_grilla = document.getElementById("series");
+    let div_grilla = document.getElementById("personas");
     
     
-    for (let serie of grilla) {
-        if (serie.profile_path!=null) {
+    for (let persona of grilla) {
+        if (persona.profile_path!=null) {
             console.log(grilla);
             let columna = document.createElement("div");
             columna.className = "col-4 py-3";
             let encabezado = document.createElement("h2");
             encabezado.className = "text-center text-white bg-dark p-1";
-            encabezado.innerHTML = serie.name;
+            encabezado.innerHTML = persona.name;
             let card = document.createElement("div");
             card.className = "card";
             let poster = document.createElement("img");
             poster.className = "card-img-top";
-            poster.src = "https://image.tmdb.org/t/p/w500/" + serie.profile_path;
+            poster.src = "https://image.tmdb.org/t/p/w500/" + persona.profile_path;
             poster.onclick = () => {
-                alert(serie.known_for);
+                alert(persona.name);
             }
             let card_body = document.createElement("div");
             card_body.className = "card-body";
             let parrafo = document.createElement("p");
             parrafo.className = "card-text text-dark";
           
-            for (let catalogo of serie.known_for) {
-                parrafo.innerHTML = parrafo.innerHTML + catalogo.title +'<br>';
+            for (let catalogo of persona.known_for) {
+                if (catalogo.title!=null) {
+                    parrafo.innerHTML = parrafo.innerHTML + catalogo.title +'<br>';
+                }
+               
             }
-            //parrafo.innerHTML = serie.known_for;
+            
             card_body.appendChild(encabezado);
             card_body.appendChild(parrafo);
             card.appendChild(poster);
