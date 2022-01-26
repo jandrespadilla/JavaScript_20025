@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Clase 11 - Coderhouse</title>
+    <style>
+        .paises {
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-white bg-black p-3">
+                    <h1>Coderhouse</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 py-5">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su Nombre" value="Javier">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Ingrese su Email" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="listaPaises" class="form-label">País</label>
+                            <select class="form-select" id="listaPaises">
+                                <option id="pais1" value="Argentina" class="paises">Argentina</option>
+                                <option id="pais2" value="Chile" class="paises" disabled>Chile</option>
+                                <option id="pais3" value="Colombia" class="paises">Colombia</option>
+                                <option id="pais4 "value="Uruguay" class="paises" selected="selected">Uruguay</option>
+                                <option id="pais5" value="Venezuela" class="paises">Venezuela</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="consulta" class="form-label">Consulta</label>
+                            <textarea id="consulta" class="form-control"></textarea>
+                        </div>
+                        <button type="button" id="enviar_datos" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div id="notificacion" class="col-md-4 p-3 my-3">Div de Notificación</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 my-3">
+                    <p>Para mayor información, visiten la página oficial de <a href="https://jquery.com/" target="_blank">jQuery</a>.</p>
+                    <p>Para mayor información, visiten la página oficial de <a href="https://www.coderhouse.com/" target="_blank">Coderhouse</a>.</p>
+                    <p>Para mayor información, visiten la página oficial de <strong>Bootstrap</strong>.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 my-3">
+                    <ul>
+                        <li class="paises">Té</li>
+                        <li class="paises">Café</li>
+                        <li>Mate</li>
+                        <li class="paises">Chocolatada</li>
+                    </ul>
+                    <ul>
+                        <li class="paises">Carne</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12 my-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Masculino" id="masculino">
+                        <label class="form-check-label" for="flexCheckDefault">Masculino</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Femenino" id="femenino" checked>
+                        <label class="form-check-label" for="flexCheckChecked">Femenino</label>
+                      </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </main>
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

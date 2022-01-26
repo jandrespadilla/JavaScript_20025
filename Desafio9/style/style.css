@@ -39,3 +39,25 @@
 .texto-menu{
     font-size: 20px;
 }
+.texto-modal{
+    font-size: 15px;
+    text-overflow: ellipsis;
+}
+.dialog-biografia{
+    width: 500px;
+} 
+
+.clase {
+    overflow: hidden;
+    text-overflow: ellipsis;
+ 
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+   

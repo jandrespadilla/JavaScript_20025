@@ -1,7 +1,7 @@
 function loadPerson(grilla) {
     let div_grilla = document.getElementById("personas");
     let modal = document.getElementById("detallePersona");
-    let infoPersona = document.getElementById("infoPersona");   
+      
     
     for (let persona of grilla) {
         if (persona.profile_path!=null) {
@@ -16,15 +16,13 @@ function loadPerson(grilla) {
             let poster = document.createElement("img");
             poster.className = "card-img-top";
             poster.src = "https://image.tmdb.org/t/p/w500/" + persona.profile_path;
- 
-           
- 
             poster.onclick = function(){
-
-                modal.style.display = "show";
-                 
-                infoPersona.innerHTML = persona.name;
+                $('#detallePersona').modal('toggle');
+                $('#detallePersonaLabel').html(persona.name);
+                personaObj = buscarDatosPerson(persona.id); 
+   
               } 
+             
             let card_body = document.createElement("div");
             card_body.className = "card-body";
             let parrafo = document.createElement("p");
@@ -36,14 +34,11 @@ function loadPerson(grilla) {
                 }
                
             }
-            
             card_body.appendChild(encabezado);
             card_body.appendChild(parrafo);
             card.appendChild(poster);
             card.appendChild(card_body);
-            
             columna.appendChild(card);
-            
             div_grilla.appendChild(columna);           
         }
 
@@ -54,8 +49,8 @@ function loadPerson(grilla) {
 
 async function buscarperson() {
 
-    // Traigo series
-    let response = await fetch("https://api.themoviedb.org/3/trending/person/day?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
+    // Traigo personas
+    let response = await fetch("https://api.themoviedb.org/3/trending/person/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
             .then( response => response.json() )
             .then( json => {
                 
@@ -67,4 +62,28 @@ async function buscarperson() {
       return grilla;
   }
 
+
+  async function buscarDatosPerson(idPersona) {
+    $.ajax(
+        'https://api.themoviedb.org/3/person/'+idPersona+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es',
+        {
+            success: function(data) {
+              loadbiografia(data.biography);  
+              $('#btnVerMas').click(
+                function(){
+                    window.location = "./interprete.html?interprete=" + data.id;
+                   
+                }
+            )              
+            },
+            error: function() {
+              alert('Hubo un error al cargar los datos de la persona.');
+            }
+         }
+      );
+  }
+function loadbiografia(biograia){
+    let infoPersona = document.getElementById("infoPersona"); 
+    infoPersona.innerHTML = biograia;
+}
   grillatv = buscarperson();

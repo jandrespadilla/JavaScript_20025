@@ -41,3 +41,14 @@ function matrix () {
 
 // render the animation at 20 FPS.
 setInterval(matrix, 50);
+
+
+function parametrosUrl(parametro) {  
+	var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+	for (var i = 0; i < url.length; i++) {  
+		var parametroArr = url[i].split('=');  
+		if (parametroArr[0] == parametro) {  
+			return parametroArr[1];  
+		}  
+	}  
+}  
