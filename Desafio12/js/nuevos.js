@@ -1,6 +1,6 @@
-async function proximamente() {
+async function proximamente(idioma) {
     let filmografiaObj=  $.ajax(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es&page=1',
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma+'&page=1',
         {   async : false, 
             success: function(data) {
                 return data;
@@ -15,10 +15,11 @@ async function proximamente() {
 
   function loadProximamente(data) {
     let div_grilla = document.getElementById("proximamente");
+    div_grilla.innerHTML='';
     for (let proxima of data) {
         let columna = document.createElement("div");
         columna.className = "col-4 py-3";
-        let encabezado = document.createElement("h2");
+        let encabezado = document.createElement("h3");
         encabezado.className = "text-center text-white bg-dark p-1";
         encabezado.innerHTML = proxima.title;
         let card = document.createElement("div");
@@ -26,13 +27,13 @@ async function proximamente() {
         let poster = document.createElement("img");
         poster.className = "card-img-top img_card";
         poster.src = "https://image.tmdb.org/t/p/w300/" + proxima.poster_path;
-       // poster.href = 
-       // let elenco=Array();
-        //buscarActores(proxima.id,elenco);
-        poster.onclick = () => {
+        let link = document.createElement("a");
+        link.href="./pelicula.html?idPeli=" + proxima.id;
+        link.appendChild(poster);
+        /*poster.onclick = () => {
            // alert(elenco)
             window.location = "./pelicula.html?idPeli=" + proxima.id;
-        }
+        }*/
         let card_body = document.createElement("div");
         card_body.className = "card-body body_card";
         let parrafo = document.createElement("p");
@@ -42,7 +43,7 @@ async function proximamente() {
         parrafo.innerHTML = proxima.overview;
         card_body.appendChild(encabezado);
         card_body.appendChild(parrafo);
-        card.appendChild(poster);
+        card.appendChild(link);
         card.appendChild(card_body);
         
         columna.appendChild(card);
@@ -59,7 +60,7 @@ async function proximamente() {
     div_grilla.innerHTML=dataHtml;*/
   }
  
-proximamente();
+proximamente('es');
 
 async function buscarActores(id,actoresArmados) {
 
@@ -80,3 +81,14 @@ async function buscarActores(id,actoresArmados) {
      
       return actoresArmados;
   }
+  $(function() {
+    $('#toggle-event').change(function() {
+          if ($(this).prop('checked')) {
+            proximamente('es');
+            
+        }else{
+            proximamente('en');
+            
+        }
+     })
+  })
