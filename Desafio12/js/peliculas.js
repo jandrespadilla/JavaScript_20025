@@ -1,6 +1,5 @@
 function loadPeliculas(peliculas,idioma) {
     let div_pelis = document.getElementById("galeria");
-    
     div_pelis.innerHTML='';
     for (let pelis of peliculas) {
         let columna = document.createElement("div");
@@ -11,16 +10,14 @@ function loadPeliculas(peliculas,idioma) {
         let card = document.createElement("div");
         card.className = "card";
         let poster = document.createElement("img");
-        poster.className = "card-img-top";
+        poster.className = "card-img-top img_card";
         poster.src = "https://image.tmdb.org/t/p/w300/" + pelis.poster_path;
-       // let elenco=Array();
-       // buscarActores(pelis.id,elenco);
         let link = document.createElement("a");
         link.href="./pelicula.html?idPeli=" + pelis.id+'&lang='+idioma;
         link.appendChild(poster);
 
         let card_body = document.createElement("div");
-        card_body.className = "card-body";
+        card_body.className = "card-body body_card";
         let parrafo = document.createElement("p");
         parrafo.className = "card-text text-dark";
       

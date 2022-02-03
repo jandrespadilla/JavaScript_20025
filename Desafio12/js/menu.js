@@ -17,6 +17,7 @@
     
    
       loadMenu(parametrosUrl('lang'));
+      
 function loadMenu(idioma = 'es') {
      
     $('#menu').html('');

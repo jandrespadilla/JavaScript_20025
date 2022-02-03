@@ -52,3 +52,18 @@ function parametrosUrl(parametro) {
 		}  
 	}  
 }  
+/*window.onload = function () {
+
+	var ln = window.navigator.language || navigator.browserLanguage;
+	alert(ln)
+    if (ln == 'es') {
+ 
+		loadMenu('es');
+ 
+	}else{
+ 
+		loadMenu('en');
+ 
+	}
+ 
+ } */

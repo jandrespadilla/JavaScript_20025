@@ -76,7 +76,7 @@ async function buscarperson(idioma) {
        
               $('#btnVerMas').click(
                 function(){
-                    window.location = "./interprete.html?interprete=" + data.id;
+                    window.location = "./interprete.html?interprete=" + data.id+'&lang='+idioma;
                 }
             )              
             },

@@ -30,10 +30,7 @@ async function proximamente(idioma) {
         let link = document.createElement("a");
         link.href="./pelicula.html?idPeli=" + proxima.id+'&lang='+idioma;
         link.appendChild(poster);
-        /*poster.onclick = () => {
-           // alert(elenco)
-            window.location = "./pelicula.html?idPeli=" + proxima.id;
-        }*/
+
         let card_body = document.createElement("div");
         card_body.className = "card-body body_card";
         let parrafo = document.createElement("p");

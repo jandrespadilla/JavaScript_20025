@@ -1,6 +1,8 @@
 
 function pelicula(pelicula,idioma) {
-    
+if (idioma=='en') {
+  $("#toggle-event").prop("checked", false)
+}    
 
 $.ajax(
         'https://api.themoviedb.org/3/movie/'+pelicula+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma,
@@ -81,11 +83,11 @@ async function buscarActores(id,actoresArmados) {
           if ($(this).prop('checked')) {
           
             pelicula(parametrosUrl('idPeli'),'es');
-            loadMenu(parametrosUrl('lang'));
+            loadMenu('es');
              
         }else{
           
-            loadMenu(parametrosUrl('lang'));
+            loadMenu('en');
             pelicula(parametrosUrl('idPeli'),'en');
         }
      })

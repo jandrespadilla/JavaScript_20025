@@ -1,6 +1,10 @@
-$(() => {
+function interprete(interprete,idioma='es') {
+  if (idioma=='en') {
+    $("#toggle-event").prop("checked", false)
+  }    
+  
     $.ajax(
-        'https://api.themoviedb.org/3/person/'+parametrosUrl('interprete')+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es',
+        'https://api.themoviedb.org/3/person/'+interprete+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma,
         {
             success: function(data) {
                     let div_grilla = document.getElementById("personas");
@@ -46,8 +50,8 @@ $(() => {
             }
          }
       );  
-});
-
+};
+interprete(parametrosUrl('interprete'),parametrosUrl('lang')) 
 function buscarFilmografia() {
   let filmografiaObj=  $.ajax(
         'https://api.themoviedb.org/3/person/'+parametrosUrl('interprete')+'/combined_credits?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es',
@@ -62,3 +66,19 @@ function buscarFilmografia() {
       ); 
       return filmografiaObj.responseJSON;
 }
+
+$(function() {
+  $('#toggle-event').change(function() {
+      
+        if ($(this).prop('checked')) {
+        
+          interprete(parametrosUrl('interprete'),'es');
+          loadMenu('es');
+           
+      }else{
+        
+          loadMenu('en');
+          interprete(parametrosUrl('interprete'),'en');
+      }
+   })
+})
