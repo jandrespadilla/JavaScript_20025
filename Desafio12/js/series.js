@@ -1,7 +1,7 @@
-function loadSeries(grilla) {
+function loadSeries(grilla,idioma) {
     let div_grilla = document.getElementById("series");
-    
-    
+     
+    div_grilla.innerHTML='';
     for (let serie of grilla) {
         let columna = document.createElement("div");
         columna.className = "col-4 py-3";
@@ -36,18 +36,35 @@ function loadSeries(grilla) {
 }
 
 
-async function buscarSeries() {
+async function buscarSeries(idioma) {
 
     // Traigo series
-    let response = await fetch("https://api.themoviedb.org/3/trending/tv/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
+    let response = await fetch("https://api.themoviedb.org/3/trending/tv/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language="+idioma)
             .then( response => response.json() )
             .then( json => {
                 
                 return json;
             });
       grilla = await response;
-      loadSeries(grilla.results);
+     
+      loadSeries(grilla.results,idioma);
       return grilla;
   }
 
-  grillatv = buscarSeries();
+buscarSeries('es');
+
+  $(function() {
+    $('#toggle-event').change(function() {
+        
+          if ($(this).prop('checked')) {
+            buscarSeries('es');
+            
+            loadMenu('es');
+             
+        }else{
+            buscarSeries('en');
+            loadMenu('en');
+            
+        }
+     })
+  })

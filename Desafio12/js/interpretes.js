@@ -1,7 +1,7 @@
-function loadPerson(grilla) {
+function loadPerson(grilla,idioma) {
     let div_grilla = document.getElementById("personas");
    
-      
+    
     
     for (let persona of grilla) {
         if (persona.profile_path!=null) {
@@ -20,7 +20,7 @@ function loadPerson(grilla) {
                 $('#detallePersona').modal('toggle');
                 $('#detallePersonaLabel').html(persona.name);
                 personaObj = buscarDatosPerson(persona.id); 
-   
+                
               } 
              
             let card_body = document.createElement("div");
@@ -47,29 +47,33 @@ function loadPerson(grilla) {
 }
 
 
-async function buscarperson() {
+async function buscarperson(idioma) {
 
     // Traigo personas
-    let response = await fetch("https://api.themoviedb.org/3/trending/person/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
+    let response = await fetch("https://api.themoviedb.org/3/trending/person/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language="+idioma)
             .then( response => response.json() )
             .then( json => {
                 
                 return json;
             });
       grilla = await response;
-    
-      loadPerson(grilla.results);
+      
+      loadPerson(grilla.results,idioma);
+      
       return grilla;
   }
 
 
   async function buscarDatosPerson(idPersona) {
+
+    if ($('#toggle-event').prop('checked')) {idioma='es'}else{idioma='en'}
     $.ajax(
-        'https://api.themoviedb.org/3/person/'+idPersona+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es',
+        'https://api.themoviedb.org/3/person/'+idPersona+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma,
         {
             success: function(data) {
-              localStorage.setItem("biograia",data.biography); 
-              loadbiografia();  
+ 
+              $('#infoPersona').html(data.biography);
+       
               $('#btnVerMas').click(
                 function(){
                     window.location = "./interprete.html?interprete=" + data.id;
@@ -82,8 +86,21 @@ async function buscarperson() {
          }
       );
   }
-function loadbiografia(){
-    $('#infoPersona').html(localStorage.getItem("biograia"));
+ 
+     buscarperson('es');
 
-}
-  grillatv = buscarperson();
+  $(function() {
+    $('#toggle-event').change(function() {
+        
+          if ($(this).prop('checked')) {
+            buscarperson('es');
+            
+            loadMenu('es');
+             
+        }else{
+            buscarperson('en');
+            loadMenu('en');
+           
+        }
+     })
+  })

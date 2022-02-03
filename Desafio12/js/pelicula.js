@@ -52,7 +52,7 @@ $.ajax(
       );  
 
 }
-pelicula(parametrosUrl('idPeli'),'es');
+pelicula(parametrosUrl('idPeli'),parametrosUrl('lang'));
 
 
 async function buscarActores(id,actoresArmados) {
@@ -77,12 +77,16 @@ async function buscarActores(id,actoresArmados) {
 
   $(function() {
     $('#toggle-event').change(function() {
+        
           if ($(this).prop('checked')) {
+          
             pelicula(parametrosUrl('idPeli'),'es');
-            
+            loadMenu(parametrosUrl('lang'));
+             
         }else{
+          
+            loadMenu(parametrosUrl('lang'));
             pelicula(parametrosUrl('idPeli'),'en');
-            
         }
      })
   })

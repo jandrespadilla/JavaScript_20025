@@ -10,10 +10,10 @@ async function proximamente(idioma) {
             }
          }
       ); 
-      loadProximamente(filmografiaObj.responseJSON.results);
+      loadProximamente(filmografiaObj.responseJSON.results,idioma);
   }
 
-  function loadProximamente(data) {
+  function loadProximamente(data,idioma) {
     let div_grilla = document.getElementById("proximamente");
     div_grilla.innerHTML='';
     for (let proxima of data) {
@@ -28,7 +28,7 @@ async function proximamente(idioma) {
         poster.className = "card-img-top img_card";
         poster.src = "https://image.tmdb.org/t/p/w300/" + proxima.poster_path;
         let link = document.createElement("a");
-        link.href="./pelicula.html?idPeli=" + proxima.id;
+        link.href="./pelicula.html?idPeli=" + proxima.id+'&lang='+idioma;
         link.appendChild(poster);
         /*poster.onclick = () => {
            // alert(elenco)
@@ -83,11 +83,15 @@ async function buscarActores(id,actoresArmados) {
   }
   $(function() {
     $('#toggle-event').change(function() {
+        
           if ($(this).prop('checked')) {
             proximamente('es');
             
+            loadMenu('es');
+             
         }else{
             proximamente('en');
+            loadMenu('en');
             
         }
      })
