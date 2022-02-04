@@ -8,15 +8,30 @@ function interprete(interprete,idioma='es') {
         {
             success: function(data) {
                     let div_grilla = document.getElementById("personas");
-                    
-
+                    div_grilla.innerHTML='';
                     let columna = document.createElement("div");
-                    columna.className = "tab-pane active";
-
+                    columna.className = "row";
+                    let divPoster = document.createElement("div");
+                    divPoster.className = " col";       
                     let poster = document.createElement("img");
-                    poster.className = "img-circle";
+                    poster.className = "imagenPeli inline";
                     poster.src = "https://image.tmdb.org/t/p/w300/" + data.profile_path;
+                    divPoster.appendChild(poster);
+                    let divParrafo = document.createElement("div");
+                    divParrafo.className = "col";
+                    let parrafo = document.createElement("p");
+                    //parrafo.setAttribute('id','biografia');
+                    parrafo.className = "pSinopsis";
+                    parrafo.innerHTML=data.biography;
+                    let nombre = document.createElement("h2");
+                    nombre.innerHTML=data.name;
+                    divParrafo.appendChild(nombre);
+                    divParrafo.appendChild(parrafo); 
 
+                    columna.appendChild(divPoster); 
+                    columna.appendChild(divParrafo); 
+                    div_grilla.appendChild(columna); 
+/*
                     let encabezado = document.createElement("h3");
                     
                     encabezado.setAttribute('id','nombre');
@@ -37,13 +52,13 @@ function interprete(interprete,idioma='es') {
                     
                     
                     $('#nombre').html(data.name);
-                    $('#biografia').html(data.biography); 
+                   // $('#biografia').html(data.biography); 
                     let filmografia =  buscarFilmografia();
                     
                     for (let index = 0; index < filmografia.cast.length; index++) {
                        
                         console.log(filmografia.cast[index]);
-                    } 
+                    } */
             },
             error: function() {
               alert('Hubo un error al cargar los datos de la persona.');

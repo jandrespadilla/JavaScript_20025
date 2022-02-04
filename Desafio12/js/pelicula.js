@@ -1,4 +1,3 @@
-
 function pelicula(pelicula,idioma) {
 if (idioma=='en') {
   $("#toggle-event").prop("checked", false)
@@ -8,7 +7,6 @@ $.ajax(
         'https://api.themoviedb.org/3/movie/'+pelicula+'?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma,
         {
             success: function(data) {
-
                     let pelicula = document.getElementById("pelicula");
                     pelicula.innerHTML='';
                     let columna = document.createElement("div");
@@ -23,7 +21,6 @@ $.ajax(
                     sinopsis.className = "col";
                     let sinopsisParrafo = document.createElement("p");
                     sinopsisParrafo.className = "pSinopsis";
-
                     sinopsisParrafo.innerHTML=data.overview;
                     let titulo = document.createElement("h2");
                     titulo.innerHTML=data.title;
