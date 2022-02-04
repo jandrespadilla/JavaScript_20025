@@ -1,7 +1,7 @@
 
     menu_es=[
         ["Inicio",'./index.html'],
-        ["Interpetes",'./interpretes.html'],
+        ["Interpretes",'./interpretes.html'],
         ["Peliculas",'./peliculas.html'],
         ["Series",'./series.html'],
         ["Contactos",'./contacto.html']
@@ -16,7 +16,7 @@
     menu = [{'es': menu_es ,'en':menu_en } ] 
     
    
-      loadMenu(parametrosUrl('lang'));
+     // loadMenu(parametrosUrl('lang'));
       
 function loadMenu(idioma = 'es') {
      

@@ -52,11 +52,12 @@ function parametrosUrl(parametro) {
 		}  
 	}  
 }  
-/*window.onload = function () {
+/* */window.onload = function () {
 
 	var ln = window.navigator.language || navigator.browserLanguage;
-	alert(ln)
-    if (ln == 'es') {
+	arregloln = ln.split('-');
+	 
+    if (arregloln[0] == 'es') {
  
 		loadMenu('es');
  
@@ -66,4 +67,4 @@ function parametrosUrl(parametro) {
  
 	}
  
- } */
+ }
