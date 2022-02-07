@@ -1,54 +1,27 @@
-function loadPeliculas(peliculas,idioma) {
-    let div_pelis = document.getElementById("galeria");
-    div_pelis.innerHTML='';
-    for (let pelis of peliculas) {
-        let columna = document.createElement("div");
-        columna.className = "col-4 py-3";
-        let encabezado = document.createElement("h2");
-        encabezado.className = "text-center text-white bg-dark p-1";
-        encabezado.innerHTML = pelis.title;
-        let card = document.createElement("div");
-        card.className = "card";
-        let poster = document.createElement("img");
-        poster.className = "card-img-top img_card";
-        poster.src = "https://image.tmdb.org/t/p/w300/" + pelis.poster_path;
-        let link = document.createElement("a");
-        link.href="./pelicula.html?idPeli=" + pelis.id+'&lang='+idioma;
-        link.appendChild(poster);
-
-        let card_body = document.createElement("div");
-        card_body.className = "card-body body_card";
-        let parrafo = document.createElement("p");
-        parrafo.className = "card-text text-dark";
-      
-
-        parrafo.innerHTML = pelis.overview;
-        card_body.appendChild(encabezado);
-        card_body.appendChild(parrafo);
-        card.appendChild(link);
-        card.appendChild(card_body);
-        
-        columna.appendChild(card);
-        
-        div_pelis.appendChild(columna);
-       
-    }
-}
-
- 
-
 async function buscarPelis(idioma) {
-
-    // Traigo pelis
-    let response = await fetch("https://api.themoviedb.org/3/trending/movie/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language="+idioma)
-            .then( response => response.json() )
-            .then( json => {
-                
-                return json;
-            });
-      grilla = await response;
-      loadPeliculas(grilla.results,idioma);
-      return grilla;
+    let filmografiaObj=  $.ajax(
+        "https://api.themoviedb.org/3/trending/movie/week?api_key=5e5fc3b9e60f1572acb749241e477ec9&language="+idioma,
+        {   async : false, 
+            success: function(data) {
+               // return data;
+                $('#galeria').html('');
+                indice=0;
+                for (let proxima of data.results) {
+                    indice++;
+                    $('#galeria').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
+                    $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
+                    $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+proxima.id+'&lang='+idioma+'"></a>');
+                    $('#link'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+proxima.poster_path+'">');
+                    $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
+                    $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+proxima.title+'</h3>');
+                    $('#card_body'+indice).append('<p class="card-text text-dark" >'+proxima.overview+'</p>');
+                }                
+            },
+            error: function() {
+              alert('Hubo un error al cargar los datos los proximos estrenos.');
+            }
+         }
+      ); 
   }
 
 
@@ -76,16 +49,12 @@ async function buscarPelis(idioma) {
 
  $(function() {
     $('#toggle-event').change(function() {
-        
           if ($(this).prop('checked')) {
             buscarPelis('es');
-            
             loadMenu('es');
-             
         }else{
             buscarPelis('en');
             loadMenu('en');
-            
         }
      })
   })

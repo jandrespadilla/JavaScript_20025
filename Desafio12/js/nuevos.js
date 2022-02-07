@@ -3,93 +3,52 @@ async function proximamente(idioma) {
         'https://api.themoviedb.org/3/movie/upcoming?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma+'&page=1',
         {   async : false, 
             success: function(data) {
-                return data;
+               // return data;
+                $('#proximamente').html('');
+                indice=0;
+                for (let proxima of data.results) {
+                    indice++;
+                    $('#proximamente').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
+                    $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
+                    $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+proxima.id+'&lang='+idioma+'"></a>');
+                    $('#link'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+proxima.poster_path+'">');
+                    $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
+                    $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+proxima.title+'</h3>');
+                    $('#card_body'+indice).append('<p class="card-text text-dark" >'+proxima.overview+'</p>');
+                }                
             },
             error: function() {
               alert('Hubo un error al cargar los datos los proximos estrenos.');
             }
          }
       ); 
-      loadProximamente(filmografiaObj.responseJSON.results,idioma);
-  }
-
-  function loadProximamente(data,idioma) {
-    let div_grilla = document.getElementById("proximamente");
-    div_grilla.innerHTML='';
-    for (let proxima of data) {
-        let columna = document.createElement("div");
-        columna.className = "col-4 py-3";
-        let encabezado = document.createElement("h3");
-        encabezado.className = "text-center text-white bg-dark p-1";
-        encabezado.innerHTML = proxima.title;
-        let card = document.createElement("div");
-        card.className = "card ";
-        let poster = document.createElement("img");
-        poster.className = "card-img-top img_card";
-        poster.src = "https://image.tmdb.org/t/p/w300/" + proxima.poster_path;
-        let link = document.createElement("a");
-        link.href="./pelicula.html?idPeli=" + proxima.id+'&lang='+idioma;
-        link.appendChild(poster);
-
-        let card_body = document.createElement("div");
-        card_body.className = "card-body body_card";
-        let parrafo = document.createElement("p");
-        parrafo.className = "card-text text-dark";
-      
-
-        parrafo.innerHTML = proxima.overview;
-        card_body.appendChild(encabezado);
-        card_body.appendChild(parrafo);
-        card.appendChild(link);
-        card.appendChild(card_body);
-        
-        columna.appendChild(card);
-        
-        div_grilla.appendChild(columna);
-       
-    }
-   /* for (let index = 0; index < data.length; index++) {
-        dataHtml = dataHtml +data[index].title;         
-        
-        
-    }       
-    
-    div_grilla.innerHTML=dataHtml;*/
   }
  
 proximamente('es');
 
+// Busco actores, todavia no la implemente en la card pero despues voy a incorporarla con mas detalles de la peli
 async function buscarActores(id,actoresArmados) {
-
     // Traigo actores
     let response = await fetch("https://api.themoviedb.org/3/movie/"+id+"/credits?api_key=5e5fc3b9e60f1572acb749241e477ec9&language=es")
             .then( response => response.json() )
             .then( json => {
-                
                 return json;
             });
-
       actores = await response;
       for (let index = 0; index < 5; index++) {
         const act = actores.cast[index];
         actoresArmados.push(act.name);
-       
     }
-     
       return actoresArmados;
   }
   $(function() {
     $('#toggle-event').change(function() {
-        
           if ($(this).prop('checked')) {
             proximamente('es');
-            
             loadMenu('es');
-             
         }else{
             proximamente('en');
             loadMenu('en');
-            
         }
      })
   })
