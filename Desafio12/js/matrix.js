@@ -52,7 +52,7 @@ function parametrosUrl(parametro) {
 		}  
 	}  
 }  
-/* */window.onload = function () {
+window.onload = function () {
 
 	var ln = window.navigator.language || navigator.browserLanguage;
 	arregloln = ln.split('-');
