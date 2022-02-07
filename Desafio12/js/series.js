@@ -5,18 +5,22 @@ async function buscarSeries(idioma) {
             .then( json => {
                 return json;
             });
+            $("#series").slideUp("slow", function(){
             $('#series').html('');
             indice=0;
             for (let serie of response.results) {
                 indice++;
-                $('#series').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
-                $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
-                $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+serie.id+'&lang='+idioma+'"></a>');
-                $('#link'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+serie.poster_path+'">');
-                $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
-                $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+serie.name+'</h3>');
-                $('#card_body'+indice).append('<p class="card-text text-dark" >'+serie.overview+'</p>');
-            }              
+                      $('#series').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
+                      $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
+                      //Al link lo agrego despues para no tener que meterme en esto primero termino el resto de los datos que me faltan en los demas detalles
+                     // $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+serie.id+'&lang='+idioma+'"></a>');
+                      $('#card'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+serie.poster_path+'">');
+                      $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
+                      $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+serie.name+'</h3>');
+                      $('#card_body'+indice).append('<p class="card-text text-dark" >'+serie.overview+'</p>');
+                } 
+                $("#series").slideDown(2000);
+              });             
   }
 
 buscarSeries('es');
