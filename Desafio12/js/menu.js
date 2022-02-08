@@ -31,6 +31,7 @@ function loadMenu(idioma = 'es') {
             $('#ulMenu').append('<li id="li'+item[0]+'" class="nav-item"></li>');
             $('#li'+item[0]).append('<a class="nav-link text-white texto-menu" href="'+item[1]+'">'+item[0]+'</a>');
         }         
+       // $('#menu').append('<input class="me-4" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-success" type="submit">Search</button>');
         $("#menu").fadeIn(1000);
     });
       

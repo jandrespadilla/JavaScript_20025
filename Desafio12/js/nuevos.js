@@ -4,6 +4,7 @@ async function proximamente(idioma) {
         {   async : false, 
             success: function(data) {
                // return data;
+                $("#proximamente").slideUp("slow", function(){
                 $('#proximamente').html('');
                 indice=0;
                 for (let proxima of data.results) {
@@ -15,7 +16,9 @@ async function proximamente(idioma) {
                     $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
                     $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+proxima.title+'</h3>');
                     $('#card_body'+indice).append('<p class="card-text text-dark" >'+proxima.overview+'</p>');
-                }                
+                }   
+                $("#proximamente").slideDown(2000);
+              });                               
             },
             error: function() {
               alert('Hubo un error al cargar los datos los proximos estrenos.');
