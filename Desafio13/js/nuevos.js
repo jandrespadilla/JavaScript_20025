@@ -6,10 +6,20 @@ async function proximamente(idioma) {
                // return data;
                 $("#proximamente").slideUp("slow", function(){
                 $('#proximamente').html('');
+                $('#proximamente').append('<div class="row justify-content-between">'
+                +'<div class="row align-items-start">'
+                 + '<div class="col-6 ">'
+                 + '<h2>Noticias de hoy</h2>'
+                 + '</div>'
+                 + '<div class="col-6">'
+                 + '<div class="input-group  justify-content-end "  ><input type="text" class="form-control" id="txtProximamente"  aria-describedby="btnProximamente" ><button class="btn btn-outline-secondary" type="button" id="btnProximamente">Buscar</button></div>   '
+                 + '</div>'
+                +'</div>');
+                $('#proximamente').append('<div class="row justify-content-between" id="divResultado" ></div>');
                 indice=0;
                 for (let proxima of data.results) {
                     indice++;
-                    $('#proximamente').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
+                    $('#divResultado').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
                     $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
                     $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+proxima.id+'&lang='+idioma+'"></a>');
                     $('#link'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+proxima.poster_path+'">');
@@ -18,7 +28,17 @@ async function proximamente(idioma) {
                     $('#card_body'+indice).append('<p class="card-text text-dark" >'+proxima.overview+'</p>');
                 }   
                 $("#proximamente").slideDown(2000);
-              });                               
+                $("#txtProximamente").keyup(function(event){
+                  let texto = $("#txtProximamente").val();
+                  if (texto.length>=3) {
+                  //  alert( texto);
+                    $('#divResultado').html('');
+                    $('#divResultado').append(texto);
+                  }
+                  
+                });                
+              }); 
+              
             },
             error: function() {
               alert('Hubo un error al cargar los datos los proximos estrenos.');
@@ -45,6 +65,9 @@ async function buscarActores(id,actoresArmados) {
       return actoresArmados;
   }
   $(function() {
+
+   
+
     $('#toggle-event').change(function() {
           if ($(this).prop('checked')) {
             proximamente('es');
@@ -55,3 +78,4 @@ async function buscarActores(id,actoresArmados) {
         }
      })
   })
+
