@@ -1,6 +1,9 @@
-async function proximamente(idioma) {
+async function proximamente() {
+  if (localStorage.getItem('lang')=='en') {
+    $("#toggle-event").prop("checked", false)
+  }      
     let filmografiaObj=  $.ajax(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+idioma+'&page=1',
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+localStorage.getItem('lang')+'&page=1',
         {   async : false, 
             success: function(data) {
                // return data;
@@ -9,7 +12,7 @@ async function proximamente(idioma) {
                 $('#proximamente').append('<div class="row justify-content-between">'
                 +'<div class="row align-items-start">'
                  + '<div class="col-6 ">'
-                 + '<h2>Noticias de hoy</h2>'
+                 + '<h2>Lo que se viene</h2>'
                  + '</div>'
                  + '<div class="col-6">'
                  + '<div class="input-group  justify-content-end "  ><input type="text" class="form-control" id="txtProximamente"  aria-describedby="btnProximamente" ><button class="btn btn-outline-secondary" type="button" id="btnProximamente">Buscar</button></div>   '
@@ -21,7 +24,7 @@ async function proximamente(idioma) {
                     indice++;
                     $('#divResultado').append('<div id="columna'+indice+'" class="col-4 py-3"></div>');
                     $('#columna'+indice).append('<div id="card'+indice+'" class="card"></div>');
-                    $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+proxima.id+'&lang='+idioma+'"></a>');
+                    $('#card'+indice).append('<a id="link'+indice+'" href="./pelicula.html?idPeli='+proxima.id+'&lang='+localStorage.getItem('lang')+'"></a>');
                     $('#link'+indice).append('<img class="card-img-top img_card" src="https://image.tmdb.org/t/p/w300/'+proxima.poster_path+'">');
                     $('#card'+indice).append('<div id="card_body'+indice+'" class="card-body body_card" ></div>');
                     $('#card_body'+indice).append('<h3 class="text-center text-white bg-dark p-1" >'+proxima.title+'</h3>');
@@ -30,11 +33,14 @@ async function proximamente(idioma) {
                 $("#proximamente").slideDown(2000);
                 $("#txtProximamente").keyup(function(event){
                   let texto = $("#txtProximamente").val();
-                  if (texto.length>=3) {
-                  //  alert( texto);
+                  if ((texto.length>=3)) {
                     $('#divResultado').html('');
+                    $('#divResultado').append('<h2>Falta Implementar el search</h2>');
                     $('#divResultado').append(texto);
-                  }
+                  }else if(texto.length==0) {
+                      proximamente() ;
+                    }
+                  
                   
                 });                
               }); 
@@ -47,7 +53,7 @@ async function proximamente(idioma) {
       ); 
   }
  
-proximamente('es');
+proximamente();
 
 // Busco actores, todavia no la implemente en la card pero despues voy a incorporarla con mas detalles de la peli
 async function buscarActores(id,actoresArmados) {
@@ -65,17 +71,17 @@ async function buscarActores(id,actoresArmados) {
       return actoresArmados;
   }
   $(function() {
-
-   
-
     $('#toggle-event').change(function() {
           if ($(this).prop('checked')) {
-            proximamente('es');
-            loadMenu('es');
+            localStorage.setItem('lang','es');
+            proximamente();
         }else{
-            proximamente('en');
-            loadMenu('en');
+          localStorage.setItem('lang','en');
+            proximamente();
         }
+
+        loadMenu();
      })
+    
   })
 

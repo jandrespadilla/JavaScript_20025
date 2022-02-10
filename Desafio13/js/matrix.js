@@ -52,19 +52,25 @@ function parametrosUrl(parametro) {
 		}  
 	}  
 }  
-window.onload = function () {
 
+$(function() {
 	var ln = window.navigator.language || navigator.browserLanguage;
 	arregloln = ln.split('-');
-	 
-    if (arregloln[0] == 'es') {
- 
-		loadMenu('es');
- 
-	}else{
- 
-		loadMenu('en');
- 
+	
+	//alert(localStorage.getItem('lang'))
+	if (localStorage.getItem('lang')=='null') {
+		localStorage.setItem('lang',arregloln[0]);
+	} else {
+		 $('#toggle-event').attr('checked', false);
 	}
- 
- }
+	//alert($('#toggle-event').is(':checked'))
+	 
+    /*if (arregloln[0] == 'es') {
+		localStorage.setItem('lang','es');
+			
+	}else{
+		localStorage.setItem('lang','en');
+
+	}*/
+	loadMenu();
+});
