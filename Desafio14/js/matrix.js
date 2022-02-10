@@ -53,7 +53,7 @@ function parametrosUrl(parametro) {
 	}  
 }  
 
-$(function() {
+window.onload = function () {
 	var ln = window.navigator.language || navigator.browserLanguage;
 	arregloln = ln.split('-');
 	
@@ -74,4 +74,4 @@ $(function() {
 
 	}*/
 	loadMenu();
-});
+};
