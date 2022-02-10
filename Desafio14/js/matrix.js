@@ -58,10 +58,10 @@ window.onload = function () {
 	arregloln = ln.split('-');
 	
 	//alert(localStorage.getItem('lang'))
-	alert(arregloln[0])
+	//alert(arregloln[0])
 	if (localStorage.getItem('lang')=='null') {
 		localStorage.setItem('lang',arregloln[0]);
-	} else {
+	} else  {
 		 $('#toggle-event').attr('checked', false);
 	}
 	//alert($('#toggle-event').is(':checked'))
