@@ -60,7 +60,8 @@ window.onload = function () {
 	//alert(localStorage.getItem('lang'))
  
 	idioma=localStorage.getItem('lang');
-	if (idioma=='null') {
+	//alert(idioma)
+	if (idioma==null) {
 		localStorage.setItem('lang',arregloln[0]);
 	} else {
 		 $('#toggle-event').attr('checked', false);

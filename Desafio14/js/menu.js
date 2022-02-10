@@ -19,7 +19,7 @@
      // loadMenu(parametrosUrl('lang'));
       
 function loadMenu() {
-    idioma= localStorage.getItem('lang');
+    idioma = localStorage.getItem('lang');
  
     $("#menu").fadeOut("slow", function(){
         $('#menu').html('');
