@@ -58,6 +58,7 @@ $(function() {
 	arregloln = ln.split('-');
 	
 	//alert(localStorage.getItem('lang'))
+	alert(arregloln[0])
 	if (localStorage.getItem('lang')=='null') {
 		localStorage.setItem('lang',arregloln[0]);
 	} else {
