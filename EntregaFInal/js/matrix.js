@@ -77,3 +77,18 @@ window.onload = function () {
 	}*/
 	loadMenu();
 };
+
+
+async function buscadorTexto(texto) {
+	// Traigo actores
+   
+	let response = await fetch('https://api.themoviedb.org/3/search/multi?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+localStorage.getItem('lang')+'&query='+texto+'&page=1&include_adult=false')
+			.then( response => response.json() )
+			.then( json => {
+				return json;
+			});
+	  estrenos = await response.results;
+	
+	  return estrenos;
+  }
+  

@@ -36,7 +36,7 @@ async function proximamente() {
                   if ((texto.length>=3)) {
                     $('#divResultado').html('');
                     $('#divResultado').append('<h2>Estrenos</h2>');
-                    $('#divResultado').append( buscadorEstrenos(texto));
+                    $('#divResultado').append( buscadorTexto(texto));
                    
                     
                   }else if(texto.length==0) {
@@ -74,18 +74,6 @@ async function buscarActores(id,actoresArmados) {
   }
 
 // Busco estrenos por texto
-async function buscadorEstrenos(texto) {
-  // Traigo actores
- 
-  let response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=5e5fc3b9e60f1572acb749241e477ec9&language='+localStorage.getItem('lang')+'&query='+texto+'&page=1&include_adult=true&primary_release_year=2022')
-          .then( response => response.json() )
-          .then( json => {
-              return json;
-          });
-    estrenos = await response.results;
-  
-    return estrenos;
-}
 
 
   $(function() {
